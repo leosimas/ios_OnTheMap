@@ -83,11 +83,21 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cvz-3W-MJC" customClass="FBSDKLoginButton">
+                                <rect key="frame" x="24" y="492" width="272" height="56"/>
+                                <color key="backgroundColor" white="1" alpha="0.10771618150684932" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="S49-DR-zHC"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="cvz-3W-MJC" secondAttribute="bottom" constant="20" id="1DQ-7l-AXb"/>
                             <constraint firstAttribute="trailingMargin" secondItem="qm5-WH-dAD" secondAttribute="trailing" constant="8" id="3p1-5p-gLT"/>
                             <constraint firstItem="pkg-uU-vBx" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="4Xb-WA-HiP"/>
+                            <constraint firstItem="cvz-3W-MJC" firstAttribute="width" secondItem="r5J-rF-OUu" secondAttribute="width" id="Ghc-W4-DHw"/>
+                            <constraint firstItem="cvz-3W-MJC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="HgQ-D9-8WL"/>
                             <constraint firstItem="zJv-km-JzT" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="8" id="TwG-rl-Wvt"/>
                             <constraint firstItem="r5J-rF-OUu" firstAttribute="leading" secondItem="zJv-km-JzT" secondAttribute="leading" id="WgH-lX-Vls"/>
                             <constraint firstItem="1tM-vl-WPx" firstAttribute="top" secondItem="pkg-uU-vBx" secondAttribute="bottom" constant="24" id="YGj-BA-Y0s"/>
@@ -107,6 +117,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="facebookLoginButton" destination="cvz-3W-MJC" id="cS4-QD-svv"/>
                         <outlet property="loginTextfield" destination="qm5-WH-dAD" id="BcH-Jh-EYc"/>
                         <outlet property="passwordTextfield" destination="zJv-km-JzT" id="sCK-bG-UBz"/>
                     </connections>

@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import FBSDKLoginKit
 
 class LoginViewController: UIViewController {
 
     @IBOutlet weak var loginTextfield: LoginTextField!
     @IBOutlet weak var passwordTextfield: LoginTextField!
+    @IBOutlet weak var facebookLoginButton : FBSDKLoginButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +23,7 @@ class LoginViewController: UIViewController {
         passwordTextfield.setPlaceHolder(text: "Password")
         passwordTextfield.isSecureTextEntry = true
         
+        configureFacebookLoginButton()
     }
 
     @IBAction func loginPressed(_ sender: Any) {
@@ -31,4 +34,27 @@ class LoginViewController: UIViewController {
         let url = URL(string: "https://www.udacity.com/account/auth#!/signup")!
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
+    
+    private func configureFacebookLoginButton() {
+        facebookLoginButton.readPermissions = ["public_profile", "email"]
+        facebookLoginButton.delegate = self
+    }
+}
+
+extension LoginViewController : FBSDKLoginButtonDelegate {
+    
+    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+        if result.isCancelled {
+            return
+        }
+        
+        print("facebook logged in")
+        
+        // TODO
+    }
+    
+    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
+        print("facebook logged out")
+    }
+    
 }
