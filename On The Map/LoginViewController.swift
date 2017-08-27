@@ -27,7 +27,26 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func loginPressed(_ sender: Any) {
-        // TODO
+        guard let login = loginTextfield.text, !login.isEmpty else {
+            Alert.alert(controller: self, title: "Ops...", message: "Type your login")
+            return
+        }
+        
+        guard let password = passwordTextfield.text, !password.isEmpty else {
+            Alert.alert(controller: self, title: "Ops...", message: "Type your password")
+            return
+        }
+        
+        UdacityClient.sharedInstance().requestLogin(login: login, password: password) { (sucess, error) in
+            if !sucess {
+                Alert.alert(controller: self, title: "Error", message: error!)
+                return
+            }
+            
+            DispatchQueue.main.async {
+                self.displayHome()
+            }
+        }
     }
     
     @IBAction func signUpPressed() {
@@ -39,6 +58,10 @@ class LoginViewController: UIViewController {
         facebookLoginButton.readPermissions = ["public_profile", "email"]
         facebookLoginButton.delegate = self
     }
+    
+    fileprivate func displayHome() {
+        performSegue(withIdentifier: "segueHome", sender: nil)
+    }
 }
 
 extension LoginViewController : FBSDKLoginButtonDelegate {
@@ -49,8 +72,7 @@ extension LoginViewController : FBSDKLoginButtonDelegate {
         }
         
         print("facebook logged in")
-        
-        // TODO
+        displayHome()
     }
     
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {

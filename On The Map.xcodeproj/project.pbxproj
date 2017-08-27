@@ -15,6 +15,10 @@
 		A38714F11F532F06004E0AB0 /* LoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38714F01F532F06004E0AB0 /* LoginTextField.swift */; };
 		A38714F81F5352D1004E0AB0 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A38714F61F5352D1004E0AB0 /* FBSDKCoreKit.framework */; };
 		A38714F91F5352D1004E0AB0 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A38714F71F5352D1004E0AB0 /* FBSDKLoginKit.framework */; };
+		A38714FC1F537BF8004E0AB0 /* UdacityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38714FB1F537BF8004E0AB0 /* UdacityClient.swift */; };
+		A38715001F537FFC004E0AB0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38714FF1F537FFC004E0AB0 /* HomeViewController.swift */; };
+		A38715021F5384DE004E0AB0 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38715011F5384DE004E0AB0 /* Alert.swift */; };
+		A38715031F53886B004E0AB0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A38714F41F5352C1004E0AB0 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +33,9 @@
 		A38714F41F5352C1004E0AB0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		A38714F61F5352D1004E0AB0 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "FacebookSDKs-iOS-4.26.0/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
 		A38714F71F5352D1004E0AB0 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "FacebookSDKs-iOS-4.26.0/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
+		A38714FB1F537BF8004E0AB0 /* UdacityClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UdacityClient.swift; path = Model/UdacityClient.swift; sourceTree = "<group>"; };
+		A38714FF1F537FFC004E0AB0 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		A38715011F5384DE004E0AB0 /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Alert.swift; path = Views/Alert.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A38715031F53886B004E0AB0 /* MapKit.framework in Frameworks */,
 				A38714F81F5352D1004E0AB0 /* FBSDKCoreKit.framework in Frameworks */,
 				A38714F91F5352D1004E0AB0 /* FBSDKLoginKit.framework in Frameworks */,
 			);
@@ -87,6 +95,7 @@
 		A38714EE1F532EBC004E0AB0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A38714FA1F537BCC004E0AB0 /* Udacity */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -94,6 +103,7 @@
 		A38714EF1F532EC3004E0AB0 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A38714FF1F537FFC004E0AB0 /* HomeViewController.swift */,
 				A38714EB1F532E95004E0AB0 /* LoginViewController.swift */,
 			);
 			name = Controllers;
@@ -103,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				A38714F01F532F06004E0AB0 /* LoginTextField.swift */,
+				A38715011F5384DE004E0AB0 /* Alert.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -115,6 +126,14 @@
 				A38714F41F5352C1004E0AB0 /* MapKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A38714FA1F537BCC004E0AB0 /* Udacity */ = {
+			isa = PBXGroup;
+			children = (
+				A38714FB1F537BF8004E0AB0 /* UdacityClient.swift */,
+			);
+			name = Udacity;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,6 +208,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A38715021F5384DE004E0AB0 /* Alert.swift in Sources */,
+				A38715001F537FFC004E0AB0 /* HomeViewController.swift in Sources */,
+				A38714FC1F537BF8004E0AB0 /* UdacityClient.swift in Sources */,
 				A38714EC1F532E95004E0AB0 /* LoginViewController.swift in Sources */,
 				A38714F11F532F06004E0AB0 /* LoginTextField.swift in Sources */,
 				A38714DA1F532C3F004E0AB0 /* AppDelegate.swift in Sources */,
