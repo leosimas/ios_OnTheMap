@@ -19,6 +19,8 @@
 		A38715001F537FFC004E0AB0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38714FF1F537FFC004E0AB0 /* HomeViewController.swift */; };
 		A38715021F5384DE004E0AB0 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38715011F5384DE004E0AB0 /* Alert.swift */; };
 		A38715031F53886B004E0AB0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A38714F41F5352C1004E0AB0 /* MapKit.framework */; };
+		A38715071F54EB28004E0AB0 /* StudentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38715061F54EB28004E0AB0 /* StudentManager.swift */; };
+		A38715091F54EB5F004E0AB0 /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38715081F54EB5F004E0AB0 /* StudentInformation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		A38714FB1F537BF8004E0AB0 /* UdacityClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UdacityClient.swift; path = Model/UdacityClient.swift; sourceTree = "<group>"; };
 		A38714FF1F537FFC004E0AB0 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		A38715011F5384DE004E0AB0 /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Alert.swift; path = Views/Alert.swift; sourceTree = "<group>"; };
+		A38715061F54EB28004E0AB0 /* StudentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StudentManager.swift; path = Model/StudentManager.swift; sourceTree = "<group>"; };
+		A38715081F54EB5F004E0AB0 /* StudentInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StudentInformation.swift; path = Model/StudentInformation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +99,7 @@
 		A38714EE1F532EBC004E0AB0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A38715061F54EB28004E0AB0 /* StudentManager.swift */,
 				A38714FA1F537BCC004E0AB0 /* Udacity */,
 			);
 			name = Model;
@@ -131,6 +136,7 @@
 		A38714FA1F537BCC004E0AB0 /* Udacity */ = {
 			isa = PBXGroup;
 			children = (
+				A38715081F54EB5F004E0AB0 /* StudentInformation.swift */,
 				A38714FB1F537BF8004E0AB0 /* UdacityClient.swift */,
 			);
 			name = Udacity;
@@ -208,6 +214,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A38715091F54EB5F004E0AB0 /* StudentInformation.swift in Sources */,
+				A38715071F54EB28004E0AB0 /* StudentManager.swift in Sources */,
 				A38715021F5384DE004E0AB0 /* Alert.swift in Sources */,
 				A38715001F537FFC004E0AB0 /* HomeViewController.swift in Sources */,
 				A38714FC1F537BF8004E0AB0 /* UdacityClient.swift in Sources */,

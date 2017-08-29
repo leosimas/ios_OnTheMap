@@ -13,7 +13,7 @@ class HomeViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
+        refreshStudentsData()
     }
     
     @IBAction func logoutPressed() {
@@ -30,6 +30,21 @@ class HomeViewController: UITabBarController {
                 
                 self.dismiss(animated: true, completion: nil)
             }
+        }
+    }
+    
+    @IBAction func refresh() {
+        refreshStudentsData()
+    }
+    
+    private func refreshStudentsData() {
+        StudentManager.sharedInstance().requestStudentsInformations { (list, errorMessage) in
+            if errorMessage != nil {
+                Alert.alert(controller: self, title: "Error", message: errorMessage!)
+                return
+            }
+            
+            print(list)
         }
     }
 
