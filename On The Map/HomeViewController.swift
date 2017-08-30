@@ -9,6 +9,8 @@
 import UIKit
 
 class HomeViewController: UITabBarController {
+    
+    static let REFRESH_NOTIFICATION = "REFRESH_NOTIFICATION"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,8 +46,18 @@ class HomeViewController: UITabBarController {
                 return
             }
             
-            print(list)
+//            print(list)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue:HomeViewController.REFRESH_NOTIFICATION), object: nil)
         }
     }
+    
+    static func addRefreshListener(object : Any, selector : Selector) {
+        NotificationCenter.default.addObserver(object, selector: selector, name: NSNotification.Name(rawValue: HomeViewController.REFRESH_NOTIFICATION), object: nil)
+    }
+    
+    static func removeRefreshListener(object : Any) {
+        NotificationCenter.default.removeObserver(object)
+    }
+    
 
 }

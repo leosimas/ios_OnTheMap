@@ -185,12 +185,15 @@
         <!--Map-->
         <scene sceneID="fPT-wE-mVp">
             <objects>
-                <viewController id="KtA-nj-kny" sceneMemberID="viewController">
+                <viewController id="KtA-nj-kny" customClass="MapViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
                     <mapView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="M8k-ka-LaH">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </mapView>
                     <tabBarItem key="tabBarItem" title="Map" selectedImage="icon_mapview-selected" id="3uT-b3-dYf"/>
+                    <connections>
+                        <outlet property="mapView" destination="M8k-ka-LaH" id="KFC-8X-712"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CaO-J4-J3c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

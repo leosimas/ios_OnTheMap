@@ -41,4 +41,8 @@ struct StudentInformation {
         longitude = json["longitude"] as! Double
     }
     
+    func fullName() -> String {
+        return firstName + " " + lastName
+    }
+    
 }
