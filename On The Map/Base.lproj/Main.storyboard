@@ -189,6 +189,9 @@
                     <mapView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="M8k-ka-LaH">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <connections>
+                            <outlet property="delegate" destination="KtA-nj-kny" id="5dX-OO-hc6"/>
+                        </connections>
                     </mapView>
                     <tabBarItem key="tabBarItem" title="Map" selectedImage="icon_mapview-selected" id="3uT-b3-dYf"/>
                     <connections>

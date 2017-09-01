@@ -30,7 +30,9 @@ class HomeViewController: UITabBarController {
                     return
                 }
                 
-                self.dismiss(animated: true, completion: nil)
+                DispatchQueue.main.async {
+                    self.dismiss(animated: true, completion: nil)
+                }
             }
         }
     }
