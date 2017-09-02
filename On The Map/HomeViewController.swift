@@ -12,10 +12,12 @@ class HomeViewController: UITabBarController {
     
     static let REFRESH_NOTIFICATION = "REFRESH_NOTIFICATION"
 
+    @IBOutlet weak var updateLocationButton: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         refreshStudentsData()
+        refreshCurrentStudentData()
     }
     
     @IBAction func logoutPressed() {
@@ -45,6 +47,25 @@ class HomeViewController: UITabBarController {
         refreshStudentsData()
     }
     
+    @IBAction func updateLocation() {
+        if StudentManager.sharedInstance().studentLastInfo == nil {
+            displayEnterLocation()
+            return
+        }
+        
+        Dialogs.confirm(controller: self, title: "", message: "You have already posted a location. Would you like to overwrite it?") { (confirmed) in
+            if confirmed {
+                self.displayEnterLocation()
+            }
+        }
+        
+    }
+    
+    private func displayEnterLocation() {
+        let enterVC = storyboard?.instantiateViewController(withIdentifier: "EnterLocationViewController") as! EnterLocationViewController
+        present(enterVC, animated: true, completion: nil)
+    }
+    
     private func refreshStudentsData() {
         if self.selectedViewController != nil {
             LoadingView.show(inView: self.selectedViewController!.view)
@@ -68,6 +89,16 @@ class HomeViewController: UITabBarController {
     
     static func removeRefreshListener(object : Any) {
         NotificationCenter.default.removeObserver(object)
+    }
+    
+    private func refreshCurrentStudentData() {
+        updateLocationButton.isEnabled = false
+        
+        StudentManager.sharedInstance().requestCurrentStudentLocation { (info, errorMessage) in
+            DispatchQueue.main.async {
+                self.updateLocationButton.isEnabled = true
+            }
+        }
     }
 
 }

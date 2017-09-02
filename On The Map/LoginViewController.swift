@@ -21,8 +21,6 @@ class LoginViewController: UIViewController {
 
         loginTextfield.setPlaceHolder(text: "Login")
         
-        loginTextfield.text = "leo.simas.goncalves@gmail.com"
-        
         passwordTextfield.setPlaceHolder(text: "Password")
         passwordTextfield.isSecureTextEntry = true
         
@@ -43,7 +41,7 @@ class LoginViewController: UIViewController {
         LoadingView.show(inView: view)
         setUIEnabled(false)
         
-        UdacityClient.sharedInstance().requestLogin(login: login, password: password) { (sucess, error) in
+        StudentManager.sharedInstance().requestLogin(login: login, password: password) { (session, error) in
             
             LoadingView.hide()
             self.setUIEnabled(true)
@@ -52,7 +50,7 @@ class LoginViewController: UIViewController {
                 self.passwordTextfield.text = ""
             }
             
-            if !sucess {
+            if session == nil {
                 Dialogs.alert(controller: self, title: "Error", message: error!)
                 return
             }

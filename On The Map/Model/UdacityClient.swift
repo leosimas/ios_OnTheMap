@@ -19,11 +19,16 @@ class UdacityClient {
     private struct ParameterKeys {
         static let LIMIT = "limit"
         static let ORDER = "order"
+        static let WHERE = "where"
     }
     
     private struct ParameterValues {
         static let LIMIT_DEFAULT = "100"
         static let ORDER_DEFAULT = "-updatedAt"
+    }
+    
+    private struct ErrorMessages {
+        static let PARSE_JSON = "Failed to parse JSON"
     }
     
     static private var shared : UdacityClient?
@@ -48,7 +53,19 @@ class UdacityClient {
         }
     }
     
-    func requestLogin( login : String, password : String, completion : @escaping (( Bool, String? ) -> Void) ) {
+    private func parseResultArray(data : Data) -> [[String:AnyObject?]]?{
+        guard let json = self.parseJSON(data: data) else {
+            return nil
+        }
+        
+        guard let results = json["results"] as? [[String:AnyObject?]] else {
+            return nil
+        }
+        
+        return results
+    }
+    
+    func requestLogin( login : String, password : String, completion : @escaping (( StudentSession?, String? ) -> Void) ) {
         let request = NSMutableURLRequest(url: URL(string: Constants.URL_SESSION)!)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
@@ -57,19 +74,19 @@ class UdacityClient {
         let session = URLSession.shared
         let task = session.dataTask(with: request as URLRequest) { data, response, error in
             if error != nil {
-                completion(false, "Failed to login. Something when wrong.")
+                completion(nil, "Failed to login. Something when wrong.")
                 return
             }
             let range = Range(5..<data!.count)
             let newData = data?.subdata(in: range) /* subset response data! */
             
             guard let json = self.parseJSON(data: newData!) else {
-                completion(false, "Failed to parse JSON")
+                completion(nil, ErrorMessages.PARSE_JSON)
                 return
             }
             
             if let errorMessage = json["error"] as? String {
-                completion(false, errorMessage)
+                completion(nil, errorMessage)
                 return
             }
             
@@ -84,7 +101,7 @@ class UdacityClient {
 //                }
 //            }
             
-            completion(true, nil)
+            completion(StudentSession(json : json), nil)
         }
         task.resume()
     }
@@ -154,13 +171,8 @@ class UdacityClient {
                 return
             }
             
-            guard let json = self.parseJSON(data: data!) else {
-                completion(nil, "Failed to parse JSON")
-                return
-            }
-            
-            guard let results = json["results"] as? [[String:AnyObject?]] else {
-                completion(nil, "Failed to parse JSON")
+            guard let results = self.parseResultArray(data: data!) else {
+                completion(nil, ErrorMessages.PARSE_JSON)
                 return
             }
             
@@ -170,6 +182,40 @@ class UdacityClient {
             }
             
             completion(array, nil)
+        }
+        task.resume()
+    }
+    
+    private func createWhereValue(studentKey : String) -> String {
+        return "{\"uniqueKey\":\"\(studentKey)\"}"
+    }
+    
+    func requestLocation(forStudent key : String, completion : @escaping (( StudentInformation?, String? ) -> Void)) {
+        var components = createBasicUrl()
+        components.queryItems = [
+            URLQueryItem(name: ParameterKeys.WHERE, value: createWhereValue(studentKey: key))
+        ]
+        
+        var request = createRequest(components: components)
+        request.httpMethod = "GET"
+        
+        let session = URLSession.shared
+        let task = session.dataTask(with: request as URLRequest) { data, response, error in
+            if error != nil {
+                completion(nil, error?.localizedDescription)
+                return
+            }
+            
+            guard let results = self.parseResultArray(data: data!) else {
+                completion(nil, ErrorMessages.PARSE_JSON)
+                return
+            }
+            
+            if (results.count > 0) {
+                completion(StudentInformation(json : results[0]), nil)
+            } else {
+                completion(nil, nil)
+            }
         }
         task.resume()
     }

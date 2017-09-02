@@ -26,6 +26,8 @@
 		A387150F1F58EEA9004E0AB0 /* StudentPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A387150E1F58EEA9004E0AB0 /* StudentPin.swift */; };
 		A38715111F5ABA46004E0AB0 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38715101F5ABA46004E0AB0 /* LoadingView.swift */; };
 		A38715131F5AC395004E0AB0 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38715121F5AC395004E0AB0 /* ListViewController.swift */; };
+		A38715151F5ACF60004E0AB0 /* EnterLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38715141F5ACF60004E0AB0 /* EnterLocationViewController.swift */; };
+		A38715171F5AF4CE004E0AB0 /* StudentSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38715161F5AF4CE004E0AB0 /* StudentSession.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +52,8 @@
 		A387150E1F58EEA9004E0AB0 /* StudentPin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StudentPin.swift; path = Views/StudentPin.swift; sourceTree = "<group>"; };
 		A38715101F5ABA46004E0AB0 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoadingView.swift; path = Views/LoadingView.swift; sourceTree = "<group>"; };
 		A38715121F5AC395004E0AB0 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		A38715141F5ACF60004E0AB0 /* EnterLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterLocationViewController.swift; sourceTree = "<group>"; };
+		A38715161F5AF4CE004E0AB0 /* StudentSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StudentSession.swift; path = Model/StudentSession.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +127,7 @@
 				A387150C1F564DA4004E0AB0 /* BaseStudentInformationViewController.swift */,
 				A387150A1F564D7A004E0AB0 /* MapViewController.swift */,
 				A38715121F5AC395004E0AB0 /* ListViewController.swift */,
+				A38715141F5ACF60004E0AB0 /* EnterLocationViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -152,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				A38715081F54EB5F004E0AB0 /* StudentInformation.swift */,
+				A38715161F5AF4CE004E0AB0 /* StudentSession.swift */,
 				A38714FB1F537BF8004E0AB0 /* UdacityClient.swift */,
 			);
 			name = Udacity;
@@ -233,11 +239,13 @@
 				A38715091F54EB5F004E0AB0 /* StudentInformation.swift in Sources */,
 				A38715071F54EB28004E0AB0 /* StudentManager.swift in Sources */,
 				A38715021F5384DE004E0AB0 /* Dialogs.swift in Sources */,
+				A38715151F5ACF60004E0AB0 /* EnterLocationViewController.swift in Sources */,
 				A387150F1F58EEA9004E0AB0 /* StudentPin.swift in Sources */,
 				A38715111F5ABA46004E0AB0 /* LoadingView.swift in Sources */,
 				A38715001F537FFC004E0AB0 /* HomeViewController.swift in Sources */,
 				A387150B1F564D7A004E0AB0 /* MapViewController.swift in Sources */,
 				A38714FC1F537BF8004E0AB0 /* UdacityClient.swift in Sources */,
+				A38715171F5AF4CE004E0AB0 /* StudentSession.swift in Sources */,
 				A38714EC1F532E95004E0AB0 /* LoginViewController.swift in Sources */,
 				A38714F11F532F06004E0AB0 /* LoginTextField.swift in Sources */,
 				A38715131F5AC395004E0AB0 /* ListViewController.swift in Sources */,
