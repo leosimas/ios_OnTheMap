@@ -181,7 +181,7 @@
                             <constraint firstItem="vcg-lx-o3N" firstAttribute="centerY" secondItem="bPp-iY-a2z" secondAttribute="centerY" id="vfs-he-O1v"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="List" selectedImage="icon_listview-selected" id="9r6-g7-0eD"/>
+                    <tabBarItem key="tabBarItem" title="List" image="icon_listview-selected" id="9r6-g7-0eD"/>
                     <connections>
                         <outlet property="tableView" destination="vcg-lx-o3N" id="bfd-ew-RfT"/>
                     </connections>
@@ -201,7 +201,7 @@
                             <outlet property="delegate" destination="KtA-nj-kny" id="5dX-OO-hc6"/>
                         </connections>
                     </mapView>
-                    <tabBarItem key="tabBarItem" title="Map" selectedImage="icon_mapview-selected" id="3uT-b3-dYf"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="icon_mapview-selected" id="3uT-b3-dYf"/>
                     <connections>
                         <outlet property="mapView" destination="M8k-ka-LaH" id="KFC-8X-712"/>
                     </connections>
