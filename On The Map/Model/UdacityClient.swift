@@ -12,8 +12,8 @@ import FBSDKLoginKit
 class UdacityClient {
     
     private struct Constants {
-        static let URL_SESSION = "https://www.udacity.com/api/session"
-        
+        static let PATH_SESSION = "session"
+        static let PATH_USER = "users"
     }
     
     private struct ParameterKeys {
@@ -41,7 +41,42 @@ class UdacityClient {
         return UdacityClient.shared!
     }
     
+    var studentSession : StudentSession? = nil
+    
     private init() {
+    }
+    
+    private func createLocationsUrl() -> URLComponents{
+        // https://parse.udacity.com/parse/classes/StudentLocation
+        var components = URLComponents()
+        components.scheme = "https"
+        components.host = "parse.udacity.com"
+        components.path = "/parse/classes/StudentLocation"
+        return components
+    }
+    
+    private func createUdacityUrl() -> URLComponents {
+        //https://www.udacity.com/api
+        var components = URLComponents()
+        components.scheme = "https"
+        components.host = "www.udacity.com"
+        components.path = "/api"
+        return components
+    }
+    
+    private func createRequest(components : URLComponents) -> URLRequest {
+        var request = URLRequest(url: components.url!)
+        request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
+        request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
+        return request
+    }
+    
+    private func createWhereValue(studentKey : String) -> String {
+        return "{\"uniqueKey\":\"\(studentKey)\"}"
+    }
+    
+    private func toJson(info : StudentInformation) -> String {
+        return "{\"uniqueKey\": \"\(studentSession!.key)\", \"firstName\": \"\(info.firstName)\", \"lastName\": \"\(info.lastName)\",\"mapString\": \"\(info.mapString)\", \"mediaURL\": \"\(info.mediaURL)\",\"latitude\": \(info.latitude), \"longitude\": \(info.longitude)}"
     }
     
     private func parseJSON(data : Data) -> [String:AnyObject?]?{
@@ -66,7 +101,10 @@ class UdacityClient {
     }
     
     func requestLogin( login : String, password : String, completion : @escaping (( StudentSession?, String? ) -> Void) ) {
-        let request = NSMutableURLRequest(url: URL(string: Constants.URL_SESSION)!)
+        var components = createUdacityUrl()
+        components.path += "/" + Constants.PATH_SESSION
+        
+        var request = URLRequest(url: components.url!)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -90,18 +128,8 @@ class UdacityClient {
                 return
             }
             
-//            {
-//                "account":{
-//                    "registered":true,
-//                    "key":"3903878747"
-//                },
-//                "session":{
-//                    "id":"1457628510Sc18f2ad4cd3fb317fb8e028488694088",
-//                    "expiration":"2015-05-10T16:48:30.760460Z"
-//                }
-//            }
-            
-            completion(StudentSession(json : json), nil)
+            self.studentSession = StudentSession(json : json)
+            completion(self.studentSession, nil)
         }
         task.resume()
     }
@@ -109,11 +137,15 @@ class UdacityClient {
     func requestLogout(completion : @escaping (( Bool, Error? ) -> Void)) {
         if (FBSDKAccessToken.current() != nil) {
             FBSDKLoginManager().logOut()
+            self.studentSession = nil
             completion(true, nil)
             return
         }
         
-        let request = NSMutableURLRequest(url: URL(string: Constants.URL_SESSION)!)
+        var components = createUdacityUrl()
+        components.path += "/" + Constants.PATH_SESSION
+        
+        var request = URLRequest(url: components.url!)
         request.httpMethod = "DELETE"
         var xsrfCookie: HTTPCookie? = nil
         let sharedCookieStorage = HTTPCookieStorage.shared
@@ -131,31 +163,17 @@ class UdacityClient {
             }
             let range = Range(5..<data!.count)
             let newData = data?.subdata(in: range) /* subset response data! */
+            
             print(NSString(data: newData!, encoding: String.Encoding.utf8.rawValue)!)
             
+            self.studentSession = nil
             completion(true, nil)
         }
         task.resume()
     }
     
-    private func createBasicUrl() -> URLComponents{
-        // https://parse.udacity.com/parse/classes/StudentLocation
-        var components = URLComponents()
-        components.scheme = "https"
-        components.host = "parse.udacity.com"
-        components.path = "/parse/classes/StudentLocation"
-        return components
-    }
-    
-    private func createRequest(components : URLComponents) -> URLRequest {
-        var request = URLRequest(url: components.url!)
-        request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
-        request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
-        return request
-    }
-    
     func requestStudentsLocations(completion : @escaping (( [StudentInformation]?, String? ) -> Void)) {
-        var components = createBasicUrl()
+        var components = createLocationsUrl()
         components.queryItems = [
             URLQueryItem(name: ParameterKeys.LIMIT, value: ParameterValues.LIMIT_DEFAULT),
             URLQueryItem(name: ParameterKeys.ORDER, value: ParameterValues.ORDER_DEFAULT)
@@ -186,12 +204,8 @@ class UdacityClient {
         task.resume()
     }
     
-    private func createWhereValue(studentKey : String) -> String {
-        return "{\"uniqueKey\":\"\(studentKey)\"}"
-    }
-    
     func requestLocation(forStudent key : String, completion : @escaping (( StudentInformation?, String? ) -> Void)) {
-        var components = createBasicUrl()
+        var components = createLocationsUrl()
         components.queryItems = [
             URLQueryItem(name: ParameterKeys.WHERE, value: createWhereValue(studentKey: key))
         ]
@@ -220,4 +234,81 @@ class UdacityClient {
         task.resume()
     }
     
+    func saveStudentLocation(studentInfo : StudentInformation, completion: @escaping (( StudentInformation?, String? ) -> Void)) {
+        var components = createLocationsUrl()
+        if !studentInfo.objectId.isEmpty {
+            components.path += "/" + studentInfo.objectId
+        }
+        
+        var request = createRequest(components: components)
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = toJson(info: studentInfo).data(using: .utf8)
+        request.httpMethod = studentInfo.objectId.isEmpty ? "POST" : "PUT"
+        
+        var studentInfo = studentInfo
+        
+        let session = URLSession.shared
+        let task = session.dataTask(with: request as URLRequest) { data, response, error in
+            if error != nil {
+                completion(nil, error!.localizedDescription)
+                return
+            }
+            
+            print(NSString(data: data!, encoding: String.Encoding.utf8.rawValue)!)
+            
+            guard let json = self.parseJSON(data: data!) else {
+                completion(nil, ErrorMessages.PARSE_JSON)
+                return
+            }
+            
+            guard let _ = json["updatedAt"] as? String else {
+                completion(nil, "Could not update your location")
+                return
+            }
+            
+            if studentInfo.objectId == "" {
+                guard let objectId = json["objectId"] as? String else {
+                    completion(nil, "Could not update your location")
+                    return
+                }
+                
+                studentInfo.objectId = objectId
+            }
+
+            completion(studentInfo, nil)
+        }
+        task.resume()
+    }
+    
+    func requestCurrentUserData(completion : @escaping ((User?, String?) -> Void)) {
+        var components = createUdacityUrl()
+        components.path += "/" + Constants.PATH_USER + "/" + studentSession!.key
+        
+        var request = createRequest(components: components)
+        request.httpMethod = "GET"
+        
+        let session = URLSession.shared
+        let task = session.dataTask(with: request as URLRequest) { data, response, error in
+            if error != nil {
+                completion(nil, error!.localizedDescription)
+                return
+            }
+            
+            let range = Range(5..<data!.count)
+            let newData = data?.subdata(in: range) /* subset response data! */
+            
+            guard let json = self.parseJSON(data: newData!) else {
+                completion(nil, ErrorMessages.PARSE_JSON)
+                return
+            }
+            
+            guard let userJson = json["user"] as? [String:AnyObject?] else {
+                completion(nil, "Could not get your data")
+                return
+            }
+            
+            completion(User(json: userJson), nil)
+        }
+        task.resume()
+    }
 }

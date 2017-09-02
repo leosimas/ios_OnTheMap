@@ -41,7 +41,7 @@ class LoginViewController: UIViewController {
         LoadingView.show(inView: view)
         setUIEnabled(false)
         
-        StudentManager.sharedInstance().requestLogin(login: login, password: password) { (session, error) in
+        StudentManager.sharedInstance().requestLogin(login: login, password: password) { (user, error) in
             
             LoadingView.hide()
             self.setUIEnabled(true)
@@ -50,7 +50,7 @@ class LoginViewController: UIViewController {
                 self.passwordTextfield.text = ""
             }
             
-            if session == nil {
+            if user == nil {
                 Dialogs.alert(controller: self, title: "Error", message: error!)
                 return
             }

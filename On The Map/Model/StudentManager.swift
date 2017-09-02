@@ -21,23 +21,51 @@ class StudentManager {
     private(set) var infoArray : [StudentInformation] = []
     private(set) var studentLastInfo : StudentInformation? = nil
     private(set) var studentSession : StudentSession? = nil
+    private(set) var user : User? = nil
     
     private init() {
     }
     
-    func requestLogin( login : String, password : String, completion : @escaping (( StudentSession?, String? ) -> Void) ) {
+    func requestLogin( login : String, password : String, completion : @escaping (( User?, String? ) -> Void) ) {
         
         UdacityClient.sharedInstance().requestLogin(login: login, password: password) { (session, error) in
-            self.studentSession = session
-            
             if error != nil {
                 completion(nil, error)
                 return
             }
             
-            completion(self.studentSession!, error)
+            self.studentSession = session
+            
+            self.requestUserData(completion: { (user, error) in
+                completion(user, error)
+            })
         }
         
+    }
+    
+    func requestLogout(completion : @escaping ((Bool, String?) -> Void)) {
+        UdacityClient.sharedInstance().requestLogout { (completed, error) in
+            if error != nil {
+                completion(false, error!.localizedDescription)
+                return
+            }
+            
+            self.studentSession = nil
+            self.user = nil
+            completion(true, nil)
+        }
+    }
+    
+    private func requestUserData(completion : @escaping ((User?, String?) -> Void)) {
+        UdacityClient.sharedInstance().requestCurrentUserData { (user, error) in
+            if error != nil {
+                completion(nil, error)
+                return
+            }
+            
+            self.user = user
+            completion(user, nil)
+        }
     }
     
     func requestStudentsInformations(completion : @escaping (([StudentInformation]?, String?) -> Void)) {
@@ -64,4 +92,26 @@ class StudentManager {
         }
         
     }
+    
+    func requestUpdateLocation(newInfo : StudentInformation, completion : @escaping ((StudentInformation?, String?) -> Void)) {
+        
+        var newInfo = newInfo
+        newInfo.objectId = studentLastInfo == nil ? "" : studentLastInfo!.objectId
+        newInfo.firstName = user!.firstName
+        newInfo.lastName = user!.lastName
+        newInfo.uniqueKey = studentSession!.key
+        
+        UdacityClient.sharedInstance().saveStudentLocation(studentInfo: newInfo) { (updatedInfo, errorMessage) in
+            
+            if errorMessage != nil {
+                completion(nil, errorMessage)
+                return
+            }
+            
+            self.studentLastInfo = updatedInfo
+            completion(self.studentLastInfo, nil)
+            
+        }
+    }
+    
 }

@@ -28,6 +28,7 @@
 		A38715131F5AC395004E0AB0 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38715121F5AC395004E0AB0 /* ListViewController.swift */; };
 		A38715151F5ACF60004E0AB0 /* EnterLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38715141F5ACF60004E0AB0 /* EnterLocationViewController.swift */; };
 		A38715171F5AF4CE004E0AB0 /* StudentSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38715161F5AF4CE004E0AB0 /* StudentSession.swift */; };
+		A38715191F5B169E004E0AB0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38715181F5B169E004E0AB0 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		A38715121F5AC395004E0AB0 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		A38715141F5ACF60004E0AB0 /* EnterLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterLocationViewController.swift; sourceTree = "<group>"; };
 		A38715161F5AF4CE004E0AB0 /* StudentSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StudentSession.swift; path = Model/StudentSession.swift; sourceTree = "<group>"; };
+		A38715181F5B169E004E0AB0 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Model/User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +161,7 @@
 				A38715081F54EB5F004E0AB0 /* StudentInformation.swift */,
 				A38715161F5AF4CE004E0AB0 /* StudentSession.swift */,
 				A38714FB1F537BF8004E0AB0 /* UdacityClient.swift */,
+				A38715181F5B169E004E0AB0 /* User.swift */,
 			);
 			name = Udacity;
 			sourceTree = "<group>";
@@ -239,6 +242,7 @@
 				A38715091F54EB5F004E0AB0 /* StudentInformation.swift in Sources */,
 				A38715071F54EB28004E0AB0 /* StudentManager.swift in Sources */,
 				A38715021F5384DE004E0AB0 /* Dialogs.swift in Sources */,
+				A38715191F5B169E004E0AB0 /* User.swift in Sources */,
 				A38715151F5ACF60004E0AB0 /* EnterLocationViewController.swift in Sources */,
 				A387150F1F58EEA9004E0AB0 /* StudentPin.swift in Sources */,
 				A38715111F5ABA46004E0AB0 /* LoadingView.swift in Sources */,

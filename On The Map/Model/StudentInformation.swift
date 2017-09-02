@@ -41,6 +41,17 @@ struct StudentInformation {
         longitude = json["longitude"] as! Double
     }
     
+    init() {
+        objectId = ""
+        uniqueKey = ""
+        firstName = ""
+        lastName = ""
+        mapString = ""
+        mediaURL = ""
+        latitude = 0
+        longitude = 0
+    }
+    
     func fullName() -> String {
         return firstName + " " + lastName
     }

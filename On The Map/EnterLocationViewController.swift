@@ -25,6 +25,7 @@ class EnterLocationViewController: UIViewController {
     
     private var coordinate : CLLocationCoordinate2D?
     private let geoCoder = CLGeocoder()
+    private var locationString : String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,7 +111,7 @@ class EnterLocationViewController: UIViewController {
             }
             
             self.coordinate = location.coordinate
-            print("\nlat: \(self.coordinate!.latitude), long: \(self.coordinate!.longitude)")
+            self.locationString = address
             
             DispatchQueue.main.async {
                 self.showMap()
@@ -136,7 +137,31 @@ class EnterLocationViewController: UIViewController {
             return
         }
         
-//        StudentManager.sharedInstance().requestUpdateLocation
+        var newInfo = StudentInformation()
+        newInfo.latitude = coordinate!.latitude
+        newInfo.longitude = coordinate!.longitude
+        newInfo.mapString = locationString
+        newInfo.mediaURL = newLink
+
+        LoadingView.show(inView: view)
+        setUIEnabled(false)
+        
+        StudentManager.sharedInstance().requestUpdateLocation(newInfo: newInfo) { (updatedInfo, error) in
+            LoadingView.hide()
+            DispatchQueue.main.async {
+                self.setUIEnabled(true)
+            }
+            
+            if error != nil {
+                Dialogs.alert(controller: self, title: "Error", message: error!)
+                return
+            }
+            
+            DispatchQueue.main.async {
+                self.cancel()
+            }
+        }
+
     }
     
     private func setUIEnabled(_ enabled : Bool) {
