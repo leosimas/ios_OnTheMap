@@ -1,5 +1,5 @@
 //
-//  Alert.swift
+//  Dialogs.swift
 //  On The Map
 //
 //  Created by SoSucesso on 27/08/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Alert {
+class Dialogs {
     
     static func alert(controller : UIViewController, title : String, message : String) {
         DispatchQueue.main.async {

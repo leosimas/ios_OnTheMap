@@ -14,15 +14,18 @@ class MapViewController : BaseStudentInformationViewController {
     @IBOutlet var mapView: MKMapView!
     
     override func onRefreshed() {
-        mapView.removeAnnotations( mapView.annotations )
-        
-        let array = StudentManager.sharedInstance().infoArray
-        
-        for info in array {
-            let pin = StudentPin(info : info)
-            mapView.addAnnotation(pin)
+        DispatchQueue.main.async {
+            self.mapView.removeAnnotations( self.mapView.annotations )
+            
+            let array = StudentManager.sharedInstance().infoArray
+            
+            for info in array {
+                let pin = StudentPin(info : info)
+                self.mapView.addAnnotation(pin)
+            }
+            
+            self.mapView.showAnnotations(self.mapView.annotations, animated: true)
         }
-        
     }
     
 }
@@ -45,22 +48,9 @@ extension MapViewController : MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        
         let studentPin = view.annotation as! StudentPin
-        
-        func showError() {
-            Alert.alert(controller: self, title: "Sorry :(", message: "Couldn't open this URL : \(studentPin.studentInformation.mediaURL)")
-        }
-        
-        guard let url = URL(string: studentPin.studentInformation.mediaURL) else {
-            showError()
-            return
-        }
-        
-        if UIApplication.shared.canOpenURL(url) {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        } else {
-            showError()
-        }
+        openUrl(studentInformation: studentPin.studentInformation)
     }
     
 }

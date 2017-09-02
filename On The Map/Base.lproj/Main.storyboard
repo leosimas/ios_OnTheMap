@@ -119,6 +119,7 @@
                     </view>
                     <connections>
                         <outlet property="facebookLoginButton" destination="cvz-3W-MJC" id="cS4-QD-svv"/>
+                        <outlet property="loginButton" destination="r5J-rF-OUu" id="bM8-dg-5k5"/>
                         <outlet property="loginTextfield" destination="qm5-WH-dAD" id="BcH-Jh-EYc"/>
                         <outlet property="passwordTextfield" destination="zJv-km-JzT" id="sCK-bG-UBz"/>
                         <segue destination="2q4-82-RYV" kind="show" identifier="segueHome" id="lbg-Kf-EH1"/>
@@ -131,7 +132,7 @@
         <!--List-->
         <scene sceneID="8gX-uY-TIj">
             <objects>
-                <viewController id="rZm-fS-uix" sceneMemberID="viewController">
+                <viewController id="rZm-fS-uix" customClass="ListViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2tw-hY-Npo"/>
                         <viewControllerLayoutGuide type="bottom" id="Kfc-jy-BzZ"/>
@@ -144,7 +145,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserLocationCell" textLabel="Nog-tK-xU1" imageView="HSd-07-dvi" style="IBUITableViewCellStyleDefault" id="S2x-w2-T7t">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StudentCell" textLabel="Nog-tK-xU1" imageView="HSd-07-dvi" style="IBUITableViewCellStyleDefault" id="S2x-w2-T7t">
                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="S2x-w2-T7t" id="egu-2e-kJt">
@@ -166,6 +167,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="rZm-fS-uix" id="oa0-ie-IvW"/>
+                                    <outlet property="delegate" destination="rZm-fS-uix" id="H5A-3H-agB"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -177,6 +182,9 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="List" selectedImage="icon_listview-selected" id="9r6-g7-0eD"/>
+                    <connections>
+                        <outlet property="tableView" destination="vcg-lx-o3N" id="bfd-ew-RfT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ddj-X5-7my" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

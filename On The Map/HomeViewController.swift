@@ -19,14 +19,18 @@ class HomeViewController: UITabBarController {
     }
     
     @IBAction func logoutPressed() {
-        Alert.confirm(controller: self, title: "Logout", message: "Are you sure?") { (confirmed) in
+        Dialogs.confirm(controller: self, title: "Logout", message: "Are you sure?") { (confirmed) in
             if !confirmed {
                 return
             }
             
+            LoadingView.show(inView: self.selectedViewController!.view)
+            
             UdacityClient.sharedInstance().requestLogout { (sucess, error) in
+                LoadingView.hide()
+                
                 if !sucess {
-                    Alert.alert(controller: self, title: "Error", message: error!.localizedDescription)
+                    Dialogs.alert(controller: self, title: "Error", message: error!.localizedDescription)
                     return
                 }
                 
@@ -42,13 +46,18 @@ class HomeViewController: UITabBarController {
     }
     
     private func refreshStudentsData() {
+        if self.selectedViewController != nil {
+            LoadingView.show(inView: self.selectedViewController!.view)
+        }
+        
         StudentManager.sharedInstance().requestStudentsInformations { (list, errorMessage) in
+            LoadingView.hide()
+            
             if errorMessage != nil {
-                Alert.alert(controller: self, title: "Error", message: errorMessage!)
+                Dialogs.alert(controller: self, title: "Error", message: errorMessage!)
                 return
             }
             
-//            print(list)
             NotificationCenter.default.post(name: NSNotification.Name(rawValue:HomeViewController.REFRESH_NOTIFICATION), object: nil)
         }
     }
@@ -60,6 +69,5 @@ class HomeViewController: UITabBarController {
     static func removeRefreshListener(object : Any) {
         NotificationCenter.default.removeObserver(object)
     }
-    
 
 }

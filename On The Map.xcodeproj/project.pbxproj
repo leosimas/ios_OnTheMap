@@ -17,13 +17,15 @@
 		A38714F91F5352D1004E0AB0 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A38714F71F5352D1004E0AB0 /* FBSDKLoginKit.framework */; };
 		A38714FC1F537BF8004E0AB0 /* UdacityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38714FB1F537BF8004E0AB0 /* UdacityClient.swift */; };
 		A38715001F537FFC004E0AB0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38714FF1F537FFC004E0AB0 /* HomeViewController.swift */; };
-		A38715021F5384DE004E0AB0 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38715011F5384DE004E0AB0 /* Alert.swift */; };
+		A38715021F5384DE004E0AB0 /* Dialogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38715011F5384DE004E0AB0 /* Dialogs.swift */; };
 		A38715031F53886B004E0AB0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A38714F41F5352C1004E0AB0 /* MapKit.framework */; };
 		A38715071F54EB28004E0AB0 /* StudentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38715061F54EB28004E0AB0 /* StudentManager.swift */; };
 		A38715091F54EB5F004E0AB0 /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38715081F54EB5F004E0AB0 /* StudentInformation.swift */; };
 		A387150B1F564D7A004E0AB0 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A387150A1F564D7A004E0AB0 /* MapViewController.swift */; };
 		A387150D1F564DA4004E0AB0 /* BaseStudentInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A387150C1F564DA4004E0AB0 /* BaseStudentInformationViewController.swift */; };
 		A387150F1F58EEA9004E0AB0 /* StudentPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A387150E1F58EEA9004E0AB0 /* StudentPin.swift */; };
+		A38715111F5ABA46004E0AB0 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38715101F5ABA46004E0AB0 /* LoadingView.swift */; };
+		A38715131F5AC395004E0AB0 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38715121F5AC395004E0AB0 /* ListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,12 +42,14 @@
 		A38714F71F5352D1004E0AB0 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "FacebookSDKs-iOS-4.26.0/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
 		A38714FB1F537BF8004E0AB0 /* UdacityClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UdacityClient.swift; path = Model/UdacityClient.swift; sourceTree = "<group>"; };
 		A38714FF1F537FFC004E0AB0 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		A38715011F5384DE004E0AB0 /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Alert.swift; path = Views/Alert.swift; sourceTree = "<group>"; };
+		A38715011F5384DE004E0AB0 /* Dialogs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Dialogs.swift; path = Views/Dialogs.swift; sourceTree = "<group>"; };
 		A38715061F54EB28004E0AB0 /* StudentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StudentManager.swift; path = Model/StudentManager.swift; sourceTree = "<group>"; };
 		A38715081F54EB5F004E0AB0 /* StudentInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StudentInformation.swift; path = Model/StudentInformation.swift; sourceTree = "<group>"; };
 		A387150A1F564D7A004E0AB0 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		A387150C1F564DA4004E0AB0 /* BaseStudentInformationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseStudentInformationViewController.swift; sourceTree = "<group>"; };
 		A387150E1F58EEA9004E0AB0 /* StudentPin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StudentPin.swift; path = Views/StudentPin.swift; sourceTree = "<group>"; };
+		A38715101F5ABA46004E0AB0 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoadingView.swift; path = Views/LoadingView.swift; sourceTree = "<group>"; };
+		A38715121F5AC395004E0AB0 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,7 +111,6 @@
 			children = (
 				A38715061F54EB28004E0AB0 /* StudentManager.swift */,
 				A38714FA1F537BCC004E0AB0 /* Udacity */,
-				A387150E1F58EEA9004E0AB0 /* StudentPin.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -119,6 +122,7 @@
 				A38714EB1F532E95004E0AB0 /* LoginViewController.swift */,
 				A387150C1F564DA4004E0AB0 /* BaseStudentInformationViewController.swift */,
 				A387150A1F564D7A004E0AB0 /* MapViewController.swift */,
+				A38715121F5AC395004E0AB0 /* ListViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -126,8 +130,10 @@
 		A38714F21F532F0B004E0AB0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A38715011F5384DE004E0AB0 /* Dialogs.swift */,
+				A38715101F5ABA46004E0AB0 /* LoadingView.swift */,
 				A38714F01F532F06004E0AB0 /* LoginTextField.swift */,
-				A38715011F5384DE004E0AB0 /* Alert.swift */,
+				A387150E1F58EEA9004E0AB0 /* StudentPin.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -226,13 +232,15 @@
 				A387150D1F564DA4004E0AB0 /* BaseStudentInformationViewController.swift in Sources */,
 				A38715091F54EB5F004E0AB0 /* StudentInformation.swift in Sources */,
 				A38715071F54EB28004E0AB0 /* StudentManager.swift in Sources */,
-				A38715021F5384DE004E0AB0 /* Alert.swift in Sources */,
+				A38715021F5384DE004E0AB0 /* Dialogs.swift in Sources */,
 				A387150F1F58EEA9004E0AB0 /* StudentPin.swift in Sources */,
+				A38715111F5ABA46004E0AB0 /* LoadingView.swift in Sources */,
 				A38715001F537FFC004E0AB0 /* HomeViewController.swift in Sources */,
 				A387150B1F564D7A004E0AB0 /* MapViewController.swift in Sources */,
 				A38714FC1F537BF8004E0AB0 /* UdacityClient.swift in Sources */,
 				A38714EC1F532E95004E0AB0 /* LoginViewController.swift in Sources */,
 				A38714F11F532F06004E0AB0 /* LoginTextField.swift in Sources */,
+				A38715131F5AC395004E0AB0 /* ListViewController.swift in Sources */,
 				A38714DA1F532C3F004E0AB0 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
