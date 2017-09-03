@@ -8,19 +8,6 @@
 
 struct StudentInformation {
     
-//    {
-//    "objectId": "SHqKoU9IZs",
-//    "uniqueKey": "u156125",
-//    "firstName": "Spiros",
-//    "lastName": "Raptis",
-//    "mapString": "Ikaria,greece",
-//    "mediaURL": "http://www.facebook.com",
-//    "latitude": 40.507279,
-//    "longitude": 22.2822461,
-//    "createdAt": "2017-08-28T22:34:00.575Z",
-//    "updatedAt": "2017-08-28T22:34:00.575Z"
-//    }
-    
     var objectId : String
     var uniqueKey : String
     var firstName : String
