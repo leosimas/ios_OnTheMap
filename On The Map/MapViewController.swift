@@ -17,7 +17,7 @@ class MapViewController : BaseStudentInformationViewController {
         DispatchQueue.main.async {
             self.mapView.removeAnnotations( self.mapView.annotations )
             
-            let array = StudentManager.sharedInstance().infoArray
+            let array = StudentData.sharedInstance().infoArray
             
             for info in array {
                 let pin = StudentPin(info : info)

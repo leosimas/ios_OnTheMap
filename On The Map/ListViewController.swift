@@ -21,11 +21,11 @@ class ListViewController : BaseStudentInformationViewController {
 extension ListViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return StudentManager.sharedInstance().infoArray.count
+        return StudentData.sharedInstance().infoArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let studentInfo = StudentManager.sharedInstance().infoArray[indexPath.row]
+        let studentInfo = StudentData.sharedInstance().infoArray[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "StudentCell")!
         cell.imageView?.image = #imageLiteral(resourceName: "icon_pin")
@@ -35,7 +35,7 @@ extension ListViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let studentInfo = StudentManager.sharedInstance().infoArray[indexPath.row]
+        let studentInfo = StudentData.sharedInstance().infoArray[indexPath.row]
         openUrl(studentInformation: studentInfo)
     }
     

@@ -23,7 +23,7 @@ class BaseStudentInformationViewController : UIViewController {
     }
     
     func onRefreshed() {
-        print(StudentManager.sharedInstance().infoArray.count)
+        print(StudentData.sharedInstance().infoArray.count)
     }
     
     internal func openUrl(studentInformation : StudentInformation) {

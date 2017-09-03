@@ -20,7 +20,6 @@ class StudentManager {
         return StudentManager.shared!
     }
     
-    private(set) var infoArray : [StudentInformation] = []
     private(set) var studentLastInfo : StudentInformation? = nil
     private(set) var studentSession : StudentSession? = nil
     private(set) var user : User? = nil
@@ -99,8 +98,8 @@ class StudentManager {
                 return
             }
             
-            self.infoArray = array!
-            completion(self.infoArray, nil)
+            StudentData.sharedInstance().infoArray = array!
+            completion(array!, nil)
         }
     }
     
