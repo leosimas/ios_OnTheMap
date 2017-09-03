@@ -25,6 +25,10 @@ class LoginViewController: UIViewController {
         passwordTextfield.isSecureTextEntry = true
         
         configureFacebookLoginButton()
+        
+        if FBSDKAccessToken.current() != nil {
+            loginWithFacebook()
+        }
     }
 
     @IBAction func loginPressed(_ sender: Any) {
@@ -75,12 +79,33 @@ class LoginViewController: UIViewController {
         performSegue(withIdentifier: "segueHome", sender: nil)
     }
     
-    private func setUIEnabled(_ enabled : Bool) {
+    fileprivate func setUIEnabled(_ enabled : Bool) {
         DispatchQueue.main.async {
             self.passwordTextfield.isEnabled = enabled
             self.loginTextfield.isEnabled = enabled
             self.loginButton.isEnabled = enabled
             self.facebookLoginButton.isEnabled = enabled
+        }
+    }
+    
+    fileprivate func loginWithFacebook() {
+        LoadingView.show(inView: view)
+        setUIEnabled(false)
+        
+        StudentManager.sharedInstance().requestFacebookLogin { (user, error) in
+            LoadingView.hide()
+            self.setUIEnabled(true)
+            
+            
+            if user == nil {
+                FBSDKLoginManager().logOut()
+                Dialogs.alert(controller: self, title: "Error", message: error!)
+                return
+            }
+            
+            DispatchQueue.main.async {
+                self.displayHome()
+            }
         }
     }
     
@@ -93,8 +118,7 @@ extension LoginViewController : FBSDKLoginButtonDelegate {
             return
         }
         
-        print("facebook logged in")
-        displayHome()
+        loginWithFacebook()
     }
     
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {

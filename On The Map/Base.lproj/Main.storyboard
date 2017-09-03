@@ -88,7 +88,7 @@
                                 <rect key="frame" x="24" y="492" width="272" height="56"/>
                                 <color key="backgroundColor" white="1" alpha="0.10771618150684932" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="56" id="S49-DR-zHC"/>
+                                    <constraint firstAttribute="height" priority="250" constant="56" id="mep-Tl-Zc4"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -221,7 +221,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="0.8784313725490196" green="0.8784313725490196" blue="0.8666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="ZWe-XQ-2x1" firstAttribute="centerX" secondItem="rpo-Rk-ucA" secondAttribute="centerX" id="StI-kV-5nb"/>
                                             <constraint firstItem="ZWe-XQ-2x1" firstAttribute="centerY" secondItem="rpo-Rk-ucA" secondAttribute="centerY" id="o4A-nC-bym"/>
@@ -230,18 +230,21 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wQw-xr-32a">
                                         <rect key="frame" x="0.0" y="231" width="320" height="251"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type you location" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YP7-J8-twt">
-                                                <rect key="frame" x="57" y="72" width="207" height="22"/>
-                                                <nil key="textColor"/>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type you location" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YP7-J8-twt" customClass="LocationTextField" customModule="On_The_Map" customModuleProvider="target">
+                                                <rect key="frame" x="16" y="72" width="288" height="32"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="32" id="a8H-Yl-ZMe"/>
+                                                </constraints>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                             </textField>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.31764705882352939" green="0.53725490196078429" blue="0.70588235294117641" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="YP7-J8-twt" secondAttribute="trailing" constant="16" id="BSK-gF-53g"/>
+                                            <constraint firstItem="YP7-J8-twt" firstAttribute="leading" secondItem="wQw-xr-32a" secondAttribute="leading" constant="16" id="I6r-kS-Eb4"/>
                                             <constraint firstItem="YP7-J8-twt" firstAttribute="top" secondItem="wQw-xr-32a" secondAttribute="top" constant="72" id="NkV-99-YFc"/>
-                                            <constraint firstAttribute="trailing" secondItem="YP7-J8-twt" secondAttribute="trailing" constant="56" id="Q5h-Db-88S"/>
-                                            <constraint firstItem="YP7-J8-twt" firstAttribute="centerX" secondItem="wQw-xr-32a" secondAttribute="centerX" id="sw9-I7-xnn"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TP0-67-KY8">
@@ -258,7 +261,7 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="0.87843137250000003" green="0.87843137250000003" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="8gh-9f-EDJ" secondAttribute="bottom" constant="24" id="DUA-Uy-NIv"/>
                                             <constraint firstItem="yJg-IC-3yZ" firstAttribute="width" secondItem="TP0-67-KY8" secondAttribute="width" id="RSO-Mu-PlM"/>
@@ -350,7 +353,7 @@
             <objects>
                 <tabBarController title="On The Map" id="uBf-hO-Y14" customClass="HomeViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="lLr-Pp-exM">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" style="plain" id="y4b-oS-UDP">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="y4b-oS-UDP">
                             <connections>
                                 <action selector="logoutPressed" destination="uBf-hO-Y14" id="opn-Lx-yeE"/>
                             </connections>

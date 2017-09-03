@@ -31,8 +31,14 @@ struct StudentInformation {
     var longitude : Double
     
     init(json : [String:AnyObject?]) {
+        // found an item with nil:
+        if let key = json["uniqueKey"] as? String {
+            uniqueKey = key
+        } else {
+            uniqueKey = ""
+        }
+        
         objectId = json["objectId"] as! String
-        uniqueKey = json["uniqueKey"] as! String
         firstName = json["firstName"] as! String
         lastName = json["lastName"] as! String
         mapString = json["mapString"] as! String

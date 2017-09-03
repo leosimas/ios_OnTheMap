@@ -28,11 +28,11 @@ class HomeViewController: UITabBarController {
             
             LoadingView.show(inView: self.selectedViewController!.view)
             
-            UdacityClient.sharedInstance().requestLogout { (sucess, error) in
+            StudentManager.sharedInstance().requestLogout { (sucess, error) in
                 LoadingView.hide()
                 
                 if !sucess {
-                    Dialogs.alert(controller: self, title: "Error", message: error!.localizedDescription)
+                    Dialogs.alert(controller: self, title: "Error", message: error!)
                     return
                 }
                 

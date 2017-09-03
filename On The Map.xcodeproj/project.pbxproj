@@ -29,6 +29,8 @@
 		A38715151F5ACF60004E0AB0 /* EnterLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38715141F5ACF60004E0AB0 /* EnterLocationViewController.swift */; };
 		A38715171F5AF4CE004E0AB0 /* StudentSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38715161F5AF4CE004E0AB0 /* StudentSession.swift */; };
 		A38715191F5B169E004E0AB0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38715181F5B169E004E0AB0 /* User.swift */; };
+		A387151B1F5B6480004E0AB0 /* LocationTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A387151A1F5B6480004E0AB0 /* LocationTextField.swift */; };
+		A387151D1F5B6508004E0AB0 /* BaseTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A387151C1F5B6508004E0AB0 /* BaseTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +58,8 @@
 		A38715141F5ACF60004E0AB0 /* EnterLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterLocationViewController.swift; sourceTree = "<group>"; };
 		A38715161F5AF4CE004E0AB0 /* StudentSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StudentSession.swift; path = Model/StudentSession.swift; sourceTree = "<group>"; };
 		A38715181F5B169E004E0AB0 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Model/User.swift; sourceTree = "<group>"; };
+		A387151A1F5B6480004E0AB0 /* LocationTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationTextField.swift; path = Views/LocationTextField.swift; sourceTree = "<group>"; };
+		A387151C1F5B6508004E0AB0 /* BaseTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseTextField.swift; path = Views/BaseTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +143,8 @@
 			children = (
 				A38715011F5384DE004E0AB0 /* Dialogs.swift */,
 				A38715101F5ABA46004E0AB0 /* LoadingView.swift */,
+				A387151C1F5B6508004E0AB0 /* BaseTextField.swift */,
+				A387151A1F5B6480004E0AB0 /* LocationTextField.swift */,
 				A38714F01F532F06004E0AB0 /* LoginTextField.swift */,
 				A387150E1F58EEA9004E0AB0 /* StudentPin.swift */,
 			);
@@ -238,6 +244,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A387151B1F5B6480004E0AB0 /* LocationTextField.swift in Sources */,
 				A387150D1F564DA4004E0AB0 /* BaseStudentInformationViewController.swift in Sources */,
 				A38715091F54EB5F004E0AB0 /* StudentInformation.swift in Sources */,
 				A38715071F54EB28004E0AB0 /* StudentManager.swift in Sources */,
@@ -249,6 +256,7 @@
 				A38715001F537FFC004E0AB0 /* HomeViewController.swift in Sources */,
 				A387150B1F564D7A004E0AB0 /* MapViewController.swift in Sources */,
 				A38714FC1F537BF8004E0AB0 /* UdacityClient.swift in Sources */,
+				A387151D1F5B6508004E0AB0 /* BaseTextField.swift in Sources */,
 				A38715171F5AF4CE004E0AB0 /* StudentSession.swift in Sources */,
 				A38714EC1F532E95004E0AB0 /* LoginViewController.swift in Sources */,
 				A38714F11F532F06004E0AB0 /* LoginTextField.swift in Sources */,

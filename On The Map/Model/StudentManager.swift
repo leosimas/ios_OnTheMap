@@ -6,6 +6,8 @@
 //  Copyright © 2017 Leonardo Simas. All rights reserved.
 //
 
+import FBSDKLoginKit
+
 class StudentManager {
     
     static private var shared : StudentManager?
@@ -24,6 +26,21 @@ class StudentManager {
     private(set) var user : User? = nil
     
     private init() {
+    }
+    
+    func requestFacebookLogin(completion : @escaping (( User?, String? ) -> Void) ) {
+        UdacityClient.sharedInstance().requestLoginWithFacebook { (session, error) in
+            if error != nil {
+                completion(nil, error)
+                return
+            }
+            
+            self.studentSession = session
+            
+            self.requestUserData(completion: { (user, error) in
+                completion(user, error)
+            })
+        }
     }
     
     func requestLogin( login : String, password : String, completion : @escaping (( User?, String? ) -> Void) ) {
@@ -52,6 +69,13 @@ class StudentManager {
             
             self.studentSession = nil
             self.user = nil
+            
+            if (FBSDKAccessToken.current() != nil) {
+                FBSDKLoginManager().logOut()
+                completion(true, nil)
+                return
+            }
+            
             completion(true, nil)
         }
     }

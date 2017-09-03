@@ -100,7 +100,15 @@ class UdacityClient {
         return results
     }
     
+    func requestLoginWithFacebook(completion : @escaping (( StudentSession?, String? ) -> Void) ) {
+        login(login: nil, password: nil, completion: completion)
+    }
+    
     func requestLogin( login : String, password : String, completion : @escaping (( StudentSession?, String? ) -> Void) ) {
+        self.login(login: login, password: password, completion: completion)
+    }
+    
+    private func login( login : String?, password : String?, completion : @escaping (( StudentSession?, String? ) -> Void) ) {
         var components = createUdacityUrl()
         components.path += "/" + Constants.PATH_SESSION
         
@@ -108,7 +116,13 @@ class UdacityClient {
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = "{\"udacity\": {\"username\": \"\(login)\", \"password\": \"\(password)\"}}".data(using: String.Encoding.utf8)
+        
+        if login != nil && password != nil {
+            request.httpBody = "{\"udacity\": {\"username\": \"\(login!)\", \"password\": \"\(password!)\"}}".data(using: String.Encoding.utf8)
+        } else {
+            request.httpBody = "{\"facebook_mobile\": {\"access_token\": \"\(FBSDKAccessToken.current().tokenString!)\"}}".data(using: String.Encoding.utf8)
+        }
+        
         let session = URLSession.shared
         let task = session.dataTask(with: request as URLRequest) { data, response, error in
             if error != nil {
@@ -135,13 +149,6 @@ class UdacityClient {
     }
     
     func requestLogout(completion : @escaping (( Bool, Error? ) -> Void)) {
-        if (FBSDKAccessToken.current() != nil) {
-            FBSDKLoginManager().logOut()
-            self.studentSession = nil
-            completion(true, nil)
-            return
-        }
-        
         var components = createUdacityUrl()
         components.path += "/" + Constants.PATH_SESSION
         

@@ -18,7 +18,7 @@ class EnterLocationViewController: UIViewController {
     
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var labelQuestion: UILabel!
-    @IBOutlet weak var textfield: UITextField!
+    @IBOutlet weak var textfield: LocationTextField!
     @IBOutlet weak var confirmButton: UIButton!
     
     @IBOutlet weak var toolbar: UIToolbar!
@@ -37,11 +37,14 @@ class EnterLocationViewController: UIViewController {
         confirmButton.backgroundColor = buttonColor
         confirmButton.layer.cornerRadius = 5
         confirmButton.layer.borderWidth = 1
-        confirmButton.layer.borderColor = buttonColor.cgColor
+        confirmButton.layer.borderColor = UIColor.black.cgColor
         let padding = CGFloat(16)
         confirmButton.contentEdgeInsets = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
         
         mapView.isHidden = true
+        
+        textfield.setPlaceHolder(text: "Type your location")
+        textfield.delegate = self
     }
     
     private func configureToolbar() {
@@ -177,13 +180,24 @@ class EnterLocationViewController: UIViewController {
         mapView.showAnnotations(self.mapView.annotations, animated: true)
         
         textfield.text = ""
-        textfield.placeholder = "Enter a link to share here"
+        textfield.setPlaceHolder(text: "Enter a link to share here")
         textfield.keyboardType = .URL
+        textfield.returnKeyType = .send
         
         confirmButton.setTitle("Submit", for: .normal)
         cancelButton.tintColor = UIColor.white
         upperView.removeFromSuperview()
     }
     
+    
+}
+
+extension EnterLocationViewController : UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textfield.resignFirstResponder()
+        confirmAction()
+        return false
+    }
     
 }
