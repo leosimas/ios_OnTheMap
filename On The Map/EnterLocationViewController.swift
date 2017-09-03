@@ -23,7 +23,7 @@ class EnterLocationViewController: UIViewController {
     
     @IBOutlet weak var toolbar: UIToolbar!
     
-    private var coordinate : CLLocationCoordinate2D?
+    fileprivate var coordinate : CLLocationCoordinate2D?
     private let geoCoder = CLGeocoder()
     private var locationString : String = ""
     
@@ -45,6 +45,16 @@ class EnterLocationViewController: UIViewController {
         
         textfield.setPlaceHolder(text: "Type your location")
         textfield.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        subscribeToKeyboardNotifications()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        unsubscribeToKeyboardNotifications()
     }
     
     private func configureToolbar() {
@@ -192,12 +202,35 @@ class EnterLocationViewController: UIViewController {
     
 }
 
+// MARK: keyboard events
 extension EnterLocationViewController : UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textfield.resignFirstResponder()
-        confirmAction()
+        if coordinate != nil {
+            confirmAction()
+        }
         return false
+    }
+    
+    func keyboardWillShow(_ notification:Notification) {
+        if coordinate == nil {
+            view.frame.origin.y -= (textfield.frame.origin.y + textfield.frame.height)
+        }
+    }
+    
+    func keyboardWillHide(_ notification:Notification) {
+        view.frame.origin.y = 0
+    }
+    
+    fileprivate func subscribeToKeyboardNotifications(){
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    fileprivate func unsubscribeToKeyboardNotifications(){
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
 }

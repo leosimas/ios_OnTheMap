@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="8Tm-Ly-oHC">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -254,7 +254,7 @@
                                         <rect key="frame" x="0.0" y="231" width="320" height="251"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type you location" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YP7-J8-twt" customClass="LocationTextField" customModule="On_The_Map" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="72" width="288" height="32"/>
+                                                <rect key="frame" x="16" y="36" width="288" height="32"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="32" id="a8H-Yl-ZMe"/>
                                                 </constraints>
@@ -267,7 +267,7 @@
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="YP7-J8-twt" secondAttribute="trailing" constant="16" id="BSK-gF-53g"/>
                                             <constraint firstItem="YP7-J8-twt" firstAttribute="leading" secondItem="wQw-xr-32a" secondAttribute="leading" constant="16" id="I6r-kS-Eb4"/>
-                                            <constraint firstItem="YP7-J8-twt" firstAttribute="top" secondItem="wQw-xr-32a" secondAttribute="top" constant="72" id="NkV-99-YFc"/>
+                                            <constraint firstItem="YP7-J8-twt" firstAttribute="top" secondItem="wQw-xr-32a" secondAttribute="top" constant="36" id="NkV-99-YFc"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TP0-67-KY8">
