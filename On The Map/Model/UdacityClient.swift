@@ -11,26 +11,6 @@ import FBSDKLoginKit
 
 class UdacityClient {
     
-    private struct Constants {
-        static let PATH_SESSION = "session"
-        static let PATH_USER = "users"
-    }
-    
-    private struct ParameterKeys {
-        static let LIMIT = "limit"
-        static let ORDER = "order"
-        static let WHERE = "where"
-    }
-    
-    private struct ParameterValues {
-        static let LIMIT_DEFAULT = "100"
-        static let ORDER_DEFAULT = "-updatedAt"
-    }
-    
-    private struct ErrorMessages {
-        static let PARSE_JSON = "Failed to parse JSON"
-    }
-    
     static private var shared : UdacityClient?
     
     static func sharedInstance() -> UdacityClient {
@@ -110,7 +90,7 @@ class UdacityClient {
     
     private func login( login : String?, password : String?, completion : @escaping (( StudentSession?, String? ) -> Void) ) {
         var components = createUdacityUrl()
-        components.path += "/" + Constants.PATH_SESSION
+        components.path += "/" + UdacityConstants.UrlPaths.SESSION
         
         var request = URLRequest(url: components.url!)
         request.httpMethod = "POST"
@@ -133,7 +113,7 @@ class UdacityClient {
             let newData = data?.subdata(in: range) /* subset response data! */
             
             guard let json = self.parseJSON(data: newData!) else {
-                completion(nil, ErrorMessages.PARSE_JSON)
+                completion(nil, UdacityConstants.ErrorMessages.PARSE_JSON)
                 return
             }
             
@@ -150,7 +130,7 @@ class UdacityClient {
     
     func requestLogout(completion : @escaping (( Bool, Error? ) -> Void)) {
         var components = createUdacityUrl()
-        components.path += "/" + Constants.PATH_SESSION
+        components.path += "/" + UdacityConstants.UrlPaths.SESSION
         
         var request = URLRequest(url: components.url!)
         request.httpMethod = "DELETE"
@@ -182,8 +162,8 @@ class UdacityClient {
     func requestStudentsLocations(completion : @escaping (( [StudentInformation]?, String? ) -> Void)) {
         var components = createLocationsUrl()
         components.queryItems = [
-            URLQueryItem(name: ParameterKeys.LIMIT, value: ParameterValues.LIMIT_DEFAULT),
-            URLQueryItem(name: ParameterKeys.ORDER, value: ParameterValues.ORDER_DEFAULT)
+            URLQueryItem(name: UdacityConstants.ParameterKeys.LIMIT, value: UdacityConstants.ParameterValues.LIMIT_DEFAULT),
+            URLQueryItem(name: UdacityConstants.ParameterKeys.ORDER, value: UdacityConstants.ParameterValues.ORDER_DEFAULT)
         ]
         
         var request = createRequest(components: components)
@@ -197,7 +177,7 @@ class UdacityClient {
             }
             
             guard let results = self.parseResultArray(data: data!) else {
-                completion(nil, ErrorMessages.PARSE_JSON)
+                completion(nil, UdacityConstants.ErrorMessages.PARSE_JSON)
                 return
             }
             
@@ -214,7 +194,7 @@ class UdacityClient {
     func requestLocation(forStudent key : String, completion : @escaping (( StudentInformation?, String? ) -> Void)) {
         var components = createLocationsUrl()
         components.queryItems = [
-            URLQueryItem(name: ParameterKeys.WHERE, value: createWhereValue(studentKey: key))
+            URLQueryItem(name: UdacityConstants.ParameterKeys.WHERE, value: createWhereValue(studentKey: key))
         ]
         
         var request = createRequest(components: components)
@@ -228,7 +208,7 @@ class UdacityClient {
             }
             
             guard let results = self.parseResultArray(data: data!) else {
-                completion(nil, ErrorMessages.PARSE_JSON)
+                completion(nil, UdacityConstants.ErrorMessages.PARSE_JSON)
                 return
             }
             
@@ -264,7 +244,7 @@ class UdacityClient {
             print(NSString(data: data!, encoding: String.Encoding.utf8.rawValue)!)
             
             guard let json = self.parseJSON(data: data!) else {
-                completion(nil, ErrorMessages.PARSE_JSON)
+                completion(nil, UdacityConstants.ErrorMessages.PARSE_JSON)
                 return
             }
             
@@ -289,7 +269,7 @@ class UdacityClient {
     
     func requestCurrentUserData(completion : @escaping ((User?, String?) -> Void)) {
         var components = createUdacityUrl()
-        components.path += "/" + Constants.PATH_USER + "/" + studentSession!.key
+        components.path += "/" + UdacityConstants.UrlPaths.USER + "/" + studentSession!.key
         
         var request = createRequest(components: components)
         request.httpMethod = "GET"
@@ -305,7 +285,7 @@ class UdacityClient {
             let newData = data?.subdata(in: range) /* subset response data! */
             
             guard let json = self.parseJSON(data: newData!) else {
-                completion(nil, ErrorMessages.PARSE_JSON)
+                completion(nil, UdacityConstants.ErrorMessages.PARSE_JSON)
                 return
             }
             
